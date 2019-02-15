@@ -110,6 +110,15 @@
     //收到用户的基本信息
     NSDictionary *userInfo = content.userInfo;
     NSLog(@"%@",userInfo);
+    if([request.trigger isKindOfClass:[UNPushNotificationTrigger class]]){
+        NSLog(@"收到的远程通知");
+    }else if ([request.trigger isKindOfClass:[UNTimeIntervalNotificationTrigger class]]){
+        NSLog(@"收到的是定时器本地通知");
+    }else if ([request.trigger isKindOfClass:[UNCalendarNotificationTrigger class]]){
+        NSLog(@"收到的是日期本地通知");
+    }else if ([request.trigger isKindOfClass:[UNLocationNotificationTrigger class]]){
+        NSLog(@"收到的是地址本地通知");
+    }
 
 }
 - (void)userNotificationCenter:(UNUserNotificationCenter *)center openSettingsForNotification:(nullable UNNotification *)notification  API_AVAILABLE(ios(10.0)){
